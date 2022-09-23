@@ -19,3 +19,26 @@ miButton.addEventListener('click', function(e){
     }
 
 })
+
+var user_token;
+var datos_google = [];
+function handleCredentialResponse(response) {
+    console.log("Encoded JWT ID token: " + response.credential);
+    user_token = response.credential;
+    datos_google = jwt_decode(user_token)
+    if (datos_google !== []){
+        localStorage.setItem('email', datos_google.email);
+        window.location.href = 'menu.html';
+    } 
+    }
+window.onload = function () {
+    google.accounts.id.initialize({
+    client_id: "344842469123-c9ekgvucrhbodukr6h86boac9eb0q3df.apps.googleusercontent.com",
+    callback: handleCredentialResponse
+        });
+        google.accounts.id.renderButton(
+        document.getElementById("buttonDiv"),
+        { theme: "outline", size: "large" }  // customization attributes
+        );
+        google.accounts.id.prompt(); // also display the One Tap dialog
+    }
