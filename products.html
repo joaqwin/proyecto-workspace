@@ -30,7 +30,7 @@
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
-          <li class="nav-item">
+          <li id="container-usuario" class="nav-item">
           </li>
         </ul>
       </div>
@@ -41,6 +41,41 @@
         <h2>Productos</h2>
         <p>Verás aquí todo lo relacionado a la categoría autos.<p>
     </div>
+    <div class="buscadorsito">
+      <img src="img/lupita-buscar.png" class="lupita">
+      <input type="search" id="buscador" placeholder="Busca por nombre." class="btn btn-light">
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col text-end">
+          <div class="btn-group btn-group-toggle mb-4" data-bs-toggle="buttons">
+            <input type="radio" class="btn-check" name="options" id="filtro_mayor">
+            <label class="btn btn-light" for="filtro_mayor">$↑</label>
+            <input type="radio" class="btn-check" name="options" id="filtro_menor">
+            <label class="btn btn-light" for="filtro_menor">$↓</label>
+            <input type="radio" class="btn-check" name="options" id="relevancia" checked>
+            <label class="btn btn-light" for="relevancia"><i class="fas fa-sort-amount-down mr-1"></i></label>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 offset-lg-6 col-md-12 mb-1 container">
+          <div class="row container p-0 m-0">
+            <div class="col">
+              <input class="form-control" type="number" placeholder="Ingrese el mínimo" id="min">
+            </div>
+            <div class="col">
+              <input class="form-control" type="number" placeholder="Ingrese el máximo" id="max">
+            </div>
+            <div class="col-3 p-0">
+              <div class="btn-group" role="group">
+                <input type="button" id="filtrar" value="Filtrar" class="btn btn-light btn-block">
+                <input type="button" id="Volver" value="Remover filtro" class="btn btn-link btn-sm">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     <div class="container">
         <div class="row">
             <div class="list-group" id="cat-list-container">

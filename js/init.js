@@ -40,3 +40,7 @@ let getJSONData = function(url){
         return result;
     });
 }
+
+let usuario = document.getElementById('container-usuario');
+usuario.innerHTML = `<p class="nav-link">${localStorage.getItem('email')}</p>
+    `

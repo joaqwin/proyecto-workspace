@@ -30,17 +30,30 @@
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
-          <li class="nav-item">
+          <li id="container-usuario" class="nav-item">
           </li>
         </ul>
       </div>
     </div>
   </nav>
   <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-      </div>
+    <div class="container" id="caja">
+    </div>
+    <div class="container" id="comments">
+      <h3>Comentarios: </h3>
+    </div>
+    <br>
+    <div class="comentar" id="comentar">
+      <h5>Deja tu opinión!</h5>
+      <textarea id="textito"></textarea><br><br>
+      <select id="select_estrellas">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select><br><br>
+      <button type="submit" class="btn btn-light btn-block" id="boton_comentar">Enviar</button> 
     </div>
   </main>
   <footer class="text-muted">

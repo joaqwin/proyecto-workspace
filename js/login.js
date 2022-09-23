@@ -8,6 +8,7 @@ miButton.addEventListener('click', function(e){
     let email = miEmail.value.length;
     if (email > 0 && contra > 0){
         e.preventDefault
+        localStorage.setItem('email', miEmail.value);
         window.location.href = 'menu.html';
     }else{
         e.preventDefault();

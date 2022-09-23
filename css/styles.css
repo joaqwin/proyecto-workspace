@@ -13,6 +13,14 @@ nav a {
   text-decoration: none;
 }
 
+nav p {
+  color:grey;
+}
+
+.filtros-sort{
+  margin-left: 200px;
+}
+
 .bd-placeholder-img {
   font-size: 1.125rem;
   text-anchor: middle;
@@ -187,4 +195,52 @@ a.custom-card:hover {
 
 .checked {
   color: orange;
+}
+
+.galeria{
+  display: inline;
+}
+
+.img-galery{
+  height:150px;  
+}
+
+.div-comments{
+  border: 1px solid rgb(152, 154, 155);
+  border-radius: 5px;
+}
+
+.com-p{
+  padding-left: 10px;
+}
+
+#comentar{
+  margin-left:120px;
+}
+
+#cajita{
+  margin-top:20px;
+}
+
+.filtro{
+  display: none;
+}
+
+.lupita{
+  height: 30px;
+}
+
+.buscadorsito{
+  margin: 0px auto;
+  text-align: center;
+}
+
+#buscador{
+  font-size: 14px;
+  color: black;
+  border-width: 0.5px;
+  border-color: #c3c3c3;
+  background: transparent;
+  border-radius: 3px;
+  text-align: left;
 }
