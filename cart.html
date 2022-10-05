@@ -37,8 +37,45 @@
   </nav>
   <main>
     <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+      <h2>Carrito de Compras</h2>
+      <hr>
+      <h5>Artículos a comprar</h5>
+      <div class="producto_carritos" >
+        <table cellpadding="20" id="tabla_carrito">
+          <tr>
+            <th>asd</th>
+            <th>Nombre</th>
+            <th>Costo</th>
+            <th>Cantidad</th>
+            <th>Subtotal</th>
+          </tr>
+        </table>
+      </div>
+      <br>
+      <div>
+        <h4>Tipo de envío</h4>
+        <br>
+        <div id="ratios">
+          <div>
+            <input type="radio" name="si" id="radio1">
+            <label for="radio1">Premium 2 a 5 dias (12%)</label>
+          </div>
+          <div>
+            <input type="radio" name="si" id="radio2">
+            <label for="radio2">Express 5 a 8 dias (7%)</label>
+          </div>
+          <div>
+            <input type="radio" name="si" id="radio3">
+            <label for="radio3">Standard 12 a 15 dias (5%)</label>
+          </div>
+        </div>
+        <br>
+        <hr>
+        <br>
+        <h4>Dirección de envío</h4>
+        <input type="text" id="Calle"><label for="Calle">Calle</label> <input type="text" id="Número"><label for="Número">Numero</label><br>
+        <input typle="text" id="Esquina"><label for="Esquina">Esquina</label>
+        <hr>
       </div>
     </div>
   </main>

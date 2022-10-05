@@ -198,7 +198,9 @@ a.custom-card:hover {
 }
 
 .galeria{
-  display: inline;
+  margin-left: 100px;
+  display: flex;
+  flex-direction: row;
 }
 
 .img-galery{
@@ -243,4 +245,39 @@ a.custom-card:hover {
   background: transparent;
   border-radius: 3px;
   text-align: left;
+}
+
+.h3_prod{
+  margin-left: 50px;
+}
+
+.producto_relacionado{
+  text-align: center;
+  padding:10px;
+}
+
+.carousel, .carousel-inner > .carousel-item {
+  width: 600px;
+}
+
+.img_carrito{
+  width: 70px;
+}
+
+#A{
+  width: 30px;
+}
+
+#radios{
+  display: flex;
+  flex-direction: column;
+}
+
+.tr_carrito{
+  border-width: 0.5px;
+  border-color:grey;
+}
+
+#boton_comprar{
+  float: right;
 }

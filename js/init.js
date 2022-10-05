@@ -42,5 +42,43 @@ let getJSONData = function(url){
 }
 
 let usuario = document.getElementById('container-usuario');
-usuario.innerHTML = `<p class="nav-link">${localStorage.getItem('email')}</p>
+usuario.innerHTML = `
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    ${localStorage.getItem('email')}
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="cart.html">Mi carrito</a>
+    <a class="dropdown-item" href="my-profile.html">Mi perfil</a>
+    <a class="dropdown-item" href="index.html" onclick="localStorage.removeItem('email')">Cerrar sesión</a>
+  </div>
+</div>
     `
+
+
+
+    let carrito_string;
+    if (localStorage.getItem('carrito') === null){
+      carrito_string = "";
+    }
+    else{
+      carrito_string= localStorage.getItem('carrito');
+    }
+let info_producto_comprado;
+let array_productos_comprado =[];
+let contador = parseInt(localStorage.getItem('contador'));
+function carrito(array){
+  if (contador === 1){
+    info_producto_comprado = `{"${contador}": {"name":"${array.name}", "unitCost":"${array.cost}", "currency":"${array.currency}", "image":"${array.images[0]}"}`
+    contador++
+    console.log('1') 
+  }
+  else {
+    info_producto_comprado = `, {"${contador}": {"name":"${array.name}", "unitCost":"${array.cost}", "currency":"${array.currency}", "image":"${array.images[0]}"}`
+    contador++
+    console.log('2')
+  }
+  array_productos_comprado.push(info_producto_comprado);
+  localStorage.setItem('carrito', carrito_string + array_productos_comprado)
+  localStorage.setItem('contador', contador);
+}
