@@ -54,31 +54,40 @@ usuario.innerHTML = `
   </div>
 </div>
     `
+;
+let arrayProductosComprados = [];
+let infoProductoComprado;
+let estaEnElCarrito = false;
+let arrayProductosCompradosJSON = [];
+let productoCompradoObjeto;
 
-
-
-    let carrito_string;
-    if (localStorage.getItem('carrito') === null){
-      carrito_string = "";
-    }
-    else{
-      carrito_string= localStorage.getItem('carrito');
-    }
-let info_producto_comprado;
-let array_productos_comprado =[];
-let contador = parseInt(localStorage.getItem('contador'));
 function carrito(array){
-  if (contador === 1){
-    info_producto_comprado = `{"${contador}": {"name":"${array.name}", "unitCost":"${array.cost}", "currency":"${array.currency}", "image":"${array.images[0]}"}`
-    contador++
-    console.log('1') 
+  if (localStorage.getItem('carrito') === null){
+      arrayProductosComprados = [];
+      infoProductoComprado = `{"name":"${array.name}", "unitCost":"${array.cost}", "currency":"${array.currency}", "image":"${array.images[0]}", "inputValue":"1"}`
+      arrayProductosComprados.push(infoProductoComprado);
+      localStorage.setItem('carrito', JSON.stringify(arrayProductosComprados));
   }
-  else {
-    info_producto_comprado = `, {"${contador}": {"name":"${array.name}", "unitCost":"${array.cost}", "currency":"${array.currency}", "image":"${array.images[0]}"}`
-    contador++
-    console.log('2')
-  }
-  array_productos_comprado.push(info_producto_comprado);
-  localStorage.setItem('carrito', carrito_string + array_productos_comprado)
-  localStorage.setItem('contador', contador);
-}
+  else{
+    i=0;
+    arrayProductosComprados = JSON.parse(localStorage.getItem('carrito'));
+    do {
+      if (JSON.parse(arrayProductosComprados[i]).name === array.name){
+        productoCompradoObjeto = JSON.parse(arrayProductosComprados[i]);
+        productoCompradoObjeto.inputValue++;
+        arrayProductosComprados[i] = JSON.stringify(productoCompradoObjeto)
+        localStorage.setItem('carrito', JSON.stringify(arrayProductosComprados));
+        estaEnElCarrito = true;
+      }
+      i++;
+    }
+    while ((i < arrayProductosComprados.length) && (JSON.parse(arrayProductosComprados[i]).name !== array.name)); 
+    
+    if(!estaEnElCarrito){ 
+      infoProductoComprado = `{"name":"${array.name}", "unitCost":"${array.cost}", "currency":"${array.currency}", "image":"${array.images[0]}", "inputValue":"1"}`
+      arrayProductosComprados.push(infoProductoComprado);
+      localStorage.setItem('carrito', JSON.stringify(arrayProductosComprados));
+    };
+  };
+};
+
