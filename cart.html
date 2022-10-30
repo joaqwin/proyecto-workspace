@@ -53,22 +53,28 @@
           </tbody>
         </table>
       </div>
-      <button id="limpiar_carrito">Limpiar carrito</button>
+      <button id="limpiar_carrito" class="btn btn-secondary">Limpiar carrito</button>
       <br>
       <div>
         <h4>Tipo de envío</h4>
         <br>
         <div id="ratios">
           <div>
-            <input type="radio" name="si" id="radio1">
+            <input onclick="meterCostos('costo-envio', `USD ${(parseInt(document.getElementById('subtotal-total').textContent.split(' ')[1]) * porcentajeDeEnvio()).toFixed(0)}`);
+              meterCostos('costo-total', `USD ${parseInt(document.getElementById('subtotal-total').textContent.split(' ')[1])+ parseInt(document.getElementById('costo-envio').textContent.split(' ')[1])}`)" 
+              type="radio" name="tipo-de-envio" id="radio1">
             <label for="radio1">Premium 2 a 5 dias (12%)</label>
           </div>
           <div>
-            <input type="radio" name="si" id="radio2">
+            <input onclick="meterCostos('costo-envio', `USD ${(parseInt(document.getElementById('subtotal-total').textContent.split(' ')[1]) * porcentajeDeEnvio()).toFixed(0)}`);
+            meterCostos('costo-total', `USD ${parseInt(document.getElementById('subtotal-total').textContent.split(' ')[1])+ parseInt(document.getElementById('costo-envio').textContent.split(' ')[1])}`)"
+               type="radio" name="tipo-de-envio" id="radio2" checked>
             <label for="radio2">Express 5 a 8 dias (7%)</label>
           </div>
           <div>
-            <input type="radio" name="si" id="radio3">
+            <input onclick="meterCostos('costo-envio', `USD ${(parseInt(document.getElementById('subtotal-total').textContent.split(' ')[1]) * porcentajeDeEnvio()).toFixed(0)}`);
+            meterCostos('costo-total', `USD ${parseInt(document.getElementById('subtotal-total').textContent.split(' ')[1])+ parseInt(document.getElementById('costo-envio').textContent.split(' ')[1])}`)" 
+                type="radio" name="tipo-de-envio" id="radio3">
             <label for="radio3">Standard 12 a 15 dias (5%)</label>
           </div>
         </div>
@@ -76,11 +82,128 @@
         <hr>
         <br>
         <h4>Dirección de envío</h4>
-        <input type="text" id="Calle"><label for="Calle">Calle</label> <input type="text" id="Número"><label for="Número">Numero</label><br>
-        <input typle="text" id="Esquina"><label for="Esquina">Esquina</label>
+        <form class="g-3 needs-validation" novalidate id="direccion-form">
+          <div class="row">
+            <div class="col-md-3">
+              <label for="calle-input" class="form-label">Calle</label>
+              <input type="text" class="form-control" id="calle-input" placeholder="Ingrese su calle" required>
+              <div class="invalid-feedback">
+                Debe ingresar una calle
+              </div>
+            </div>
+            <div class="col-md-3">
+              <label for="nro-input" class="form-label">Número</label>
+              <input type="text" class="form-control" id="nro-input" placeholder="Ingrese su número de apto" required>
+              <div class="invalid-feedback">
+                Debe ingresar un número
+              </div>
+            </div>
+            <div class="col-md-3">
+              <label for="esq-inpu" class="form-label">Esquina</label>
+              <input type="text" class="form-control" id="esq-input" placeholder="Ingrese la esquina" required>
+              <div class="invalid-feedback">
+                Debe ingresar una esquina.
+              </div>
+            </div>
+          </div>
+        </form>
         <hr>
+        <h4>Costos</h4>
+        <div class="costos-carrito">
+          <table>
+            <table cellpadding="20">
+              <tbody id="tabla_carrito">
+                <tr>
+                  <th>Subtotal</th>
+                  <td id="subtotal-total"></td>
+                </tr>
+                <tr>
+                  <th>Costo de envío</th>
+                  <td id="costo-envio"></td>
+                </tr>
+                <tr>
+                  <th>Total</th>
+                  <th id="costo-total"></th>
+                </tr>
+              </tbody>
+            </table>
+          </table>
+        <hr><br>
+        <h4>Forma de pago</h4>
+        <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+          Seleccionar forma de pago
+        </button> -->
+        <div class="row">
+            <p class="col-3" id="forma-de-pago-texto">Seleccione una forma de pago</p>
+            <a class="col-8" href=""data-bs-toggle="modal" data-bs-target="#staticBackdrop">Seleccionar</a>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Elija una forma de pago</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <input type="radio" name="forma-de-pago-modal" id="radio-modal1" value="Tarjeta de crédito">
+                <label for="radio-modal1">  Tarjeta de crédito</label>
+                <hr>                
+                <form class="row g-3 needs-validation" novalidate id="tarjeta-form">
+                  <div class="col-md-6">
+                    <label for="validationCustom01" class="form-label">Número de tarjeta</label>
+                    <input type="text" class="form-control" id="validationCustom01" placeholder="Ingrese su tarjeta" required>
+                    <div class="invalid-feedback">
+                      Debe ingresar una tarjeta
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <label for="validationCustom02" class="form-label">Código de seg.</label>
+                    <input type="text" class="form-control" id="validationCustom02" placeholder="CVC" min="3" required>
+                    <div class="invalid-feedback">
+                      Debe ingresar un CVC
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <label for="vencimiento-tarjeta" class="form-label">Vencimiento MM/AA</label>
+                    <div class="input-group has-validation">
+                      <input type="text" class="form-control" id="vencimiento-tarjeta" aria-describedby="inputGroupPrepend" required>
+                      <div class="invalid-feedback">
+                        Debe ingresar una fecha.
+                      </div>
+                    </div>
+                  </div>
+                </form>
+                <br>
+                <input type="radio" name="forma-de-pago-modal" id="radio-modal2" value="Transferencia Bancaria">
+                <label for="radio-modal2">Transferencia Bancaria</label>
+                <hr>
+                <form class="row g-3 needs-validation" novalidate id="banco-form">
+                  <div class="col-md-6">
+                    <label for="validationCustom01" class="form-label">Número de cuenta</label>
+                    <input type="text" class="form-control" value="" placeholder="Ingrese su cuenta" required>
+                    <div class="invalid-feedback">
+                      Debe ingresar una cuenta.
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="cambiarTextoSeleccionarModal()">Listo!</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
       </div>
     </div>
+    <br>
+    <div class="container">
+        <button type="submit" class="btn btn-primary col-12 " id="finalizar-compra">Finalizar Compra</button>
+        <div id="liveAlertPlaceholder"></div>
+    </div>
+    <div class="invalid-feedback" id="invalid-feedback-finalizar">
+    </div> 
   </main>
   <footer class="text-muted">
     <div class="container">

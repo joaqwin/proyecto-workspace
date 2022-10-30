@@ -57,7 +57,6 @@ usuario.innerHTML = `
 ;
 let arrayProductosComprados = [];
 let infoProductoComprado;
-let estaEnElCarrito = false;
 let arrayProductosCompradosJSON = [];
 let productoCompradoObjeto;
 
@@ -67,27 +66,27 @@ function carrito(array){
       infoProductoComprado = `{"name":"${array.name}", "unitCost":"${array.cost}", "currency":"${array.currency}", "image":"${array.images[0]}", "inputValue":"1"}`
       arrayProductosComprados.push(infoProductoComprado);
       localStorage.setItem('carrito', JSON.stringify(arrayProductosComprados));
+      console.log('NULL');
   }
   else{
-    i=0;
+    i = 0;
     arrayProductosComprados = JSON.parse(localStorage.getItem('carrito'));
-    do {
-      if (JSON.parse(arrayProductosComprados[i]).name === array.name){
-        productoCompradoObjeto = JSON.parse(arrayProductosComprados[i]);
+    while ((i < arrayProductosComprados.length) && (JSON.parse(arrayProductosComprados[i]).name !== array.name)){
+      i++
+    }
+    if ((i < arrayProductosComprados.length) && (JSON.parse(arrayProductosComprados[i]).name === array.name)){
+      productoCompradoObjeto = JSON.parse(arrayProductosComprados[i]);
         productoCompradoObjeto.inputValue++;
         arrayProductosComprados[i] = JSON.stringify(productoCompradoObjeto)
         localStorage.setItem('carrito', JSON.stringify(arrayProductosComprados));
         estaEnElCarrito = true;
-      }
-      i++;
+        console.log('WHILE');
     }
-    while ((i < arrayProductosComprados.length) && (JSON.parse(arrayProductosComprados[i]).name !== array.name)); 
-    
-    if(!estaEnElCarrito){ 
-      infoProductoComprado = `{"name":"${array.name}", "unitCost":"${array.cost}", "currency":"${array.currency}", "image":"${array.images[0]}", "inputValue":"1"}`
-      arrayProductosComprados.push(infoProductoComprado);
-      localStorage.setItem('carrito', JSON.stringify(arrayProductosComprados));
+    else{
+    infoProductoComprado = `{"name":"${array.name}", "unitCost":"${array.cost}", "currency":"${array.currency}", "image":"${array.images[0]}", "inputValue":"1"}`
+    arrayProductosComprados.push(infoProductoComprado);
+    localStorage.setItem('carrito', JSON.stringify(arrayProductosComprados));
+    console.log('!!');
+  }
     };
-  };
 };
-
