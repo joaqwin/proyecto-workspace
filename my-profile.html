@@ -51,11 +51,61 @@
     </div>
   </nav>
   <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-      </div>
+    <div id="imagen-perfil">
+
     </div>
+    <form class="row mt-4 needs-validation" novalidate id="formulario-perfil">
+      <div class="col">
+        <h1 class="mb-3">Mi Perfil</h1>
+        <hr class="my-4">
+        <div class="row g-3">
+          <div class="col-sm-6">
+            <label for="nombre" class="form-label">Nombre (*)</label>
+            <input type="text" class="form-control" id="nombre" required>
+            <div class="invalid-feedback">
+            </div>
+          </div>
+
+          <div class="col-sm-6">
+            <label for="nombre" class="form-label">Segundo Nombre</label>
+            <input type="text" class="form-control" id="segundo-nombre">
+          </div>
+
+          <div class="col-sm-6">
+            <label for="apellido" class="form-label">Apellido (*)</label>
+            <input type="text" class="form-control" id="apellido" required>
+            <div class="invalid-feedback">
+            
+            </div>
+          </div>
+
+          <div class="col-sm-6">
+            <label for="segundo-apellido" class="form-label">Segundo apellido</label>
+            <input type="text" class="form-control" id="segundo-apellido">
+          </div>
+
+          <div class="col-12">
+            <label for="email" class="form-label">Email (*)</label>
+            <input type="email" class="form-control" id="email" required>
+            <div class="invalid-feedback">
+            
+            </div>
+          </div>
+
+          <div class="col-sm-6">
+            <label for="telefono" class="form-label">Télefono de contacto</label>
+            <input type="password" class="form-control" id="telefono">
+          </div>
+
+          <div class="col-sm-6">
+            <label for="foto-perfil" class="form-label">Foto de perfil</label>
+            <input type="file" class="form-control" id="foto-perfil">
+          </div>
+
+          <button class="btn btn-primary" id="boton-guardar-cambios" type="submit">Guardar cambios</button>
+        </div>
+      </div>
+    </form>
   </main>
   <footer class="text-muted">
     <div class="container">

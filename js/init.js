@@ -49,7 +49,7 @@ usuario.innerHTML = `
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
     <a class="dropdown-item" href="cart.html">Mi carrito</a>
-    <a class="dropdown-item" href="my-profile.html">Mi perfil</a>
+    <a class="dropdown-item" href="#" onclick="entrarAMiPerfil()">Mi perfil</a>
     <a class="dropdown-item" href="index.html" onclick="localStorage.removeItem('email')">Cerrar sesión</a>
   </div>
 </div>
@@ -90,3 +90,12 @@ function carrito(array){
   }
     };
 };
+
+function entrarAMiPerfil(){
+  if (localStorage.getItem('email')){
+    window.location.href = 'my-profile.html';
+  }
+  else{
+    alert('Debes iniciar sesión primero.')
+  }
+}
