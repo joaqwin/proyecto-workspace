@@ -4,6 +4,7 @@ let email = document.getElementById('email');
 let segundoNombre = document.getElementById('segundo-nombre');
 let segundoApellido = document.getElementById('segundo-apellido');
 let tel = document.getElementById('telefono');
+let imagen = document.getElementById('imagen-perfil')
 let botonGuardarCambios = document.getElementById('boton-guardar-cambios');
 let miBD = [];
 let ultimoID = 0;
@@ -18,6 +19,28 @@ function generarID() {
 }
 
 
+
+let fotoPerfil;
+//esta funcion agrega la imagen a la pagina y al localstorage
+document.getElementById('foto-perfil').addEventListener('change', function(e){
+    agregarImagen();
+});
+
+function agregarImagen(){
+    //0.- Recuperar datos
+    let file = document.getElementById("foto-perfil").files[0];  
+
+    const reader = new FileReader();
+        reader.addEventListener('load', (event) => {
+        imagen.src = event.target.result;
+        localStorage.setItem('foto', event.target.result)
+    });
+  
+    reader.readAsDataURL(file);
+    return
+} 
+
+
 function agregarAMIBD(){
     let perfilParaAgregar = {
         "nombre": nombre.value,
@@ -26,6 +49,7 @@ function agregarAMIBD(){
         "segundoApellido": segundoApellido.value,
         "email": email.value,
         "tel": tel.value,
+        "imagen": localStorage.getItem('foto'),
         "id": generarID()
     };
     miBD.push(perfilParaAgregar);
@@ -46,6 +70,7 @@ document.forms['formulario-perfil'].addEventListener('submit', function(e){
             agregarAMIBD();       
         }    
     }
+    localStorage.removeItem('foto');
 })
 
 if (localStorage.getItem('info-perfil')){
@@ -64,6 +89,9 @@ function rellenarCamposDeUsuarioLogueado(){
     segundoApellido.value = usuario.segundoApellido;
     email.value = usuario.email;
     tel.value = usuario.tel;
+    if (usuario.imagen !== null){
+        imagen.src = usuario.imagen;
+    }
 }
 
 function validarCampos(input){
@@ -90,6 +118,7 @@ function meterFeedback(){
 
 
 function cambiarDatosDeUsuario(){
+    agregarImagen();
     let usuario = miBD.find(usuario => usuario.email === localStorage.getItem('email'));
     usuario.nombre = nombre.value;
     usuario.segundoNombre = segundoNombre.value;
@@ -97,6 +126,7 @@ function cambiarDatosDeUsuario(){
     usuario.segundoApellido = segundoApellido.value; 
     usuario.email = email.value;
     usuario.tel = tel.value;
+    usuario.imagen = localStorage.getItem('foto');
     localStorage.setItem('info-perfil', JSON.stringify(miBD))
 }
 
@@ -104,5 +134,4 @@ function cambiarDatosDeUsuario(){
 function verificarSiYaEstaRegistrado(){
     return miBD.some(usuario=> usuario.email === localStorage.getItem('email'))
 }
-
 

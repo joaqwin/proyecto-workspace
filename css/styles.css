@@ -281,3 +281,7 @@ a.custom-card:hover {
 #boton_comprar{
   float: right;
 }
+
+.myprofile-imagen-div{
+  width: 50px;
+}
